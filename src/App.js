@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar1 from './Components/Navbar1';
 import Home from './Pages/Home'
 import Services from './Pages/Services';
-import PlanJourney from './Pages/PlanJourney';
+import Destination from './Pages/Destination';
 import RealInfo from './Pages/RealInfo';
 import Help from './Pages/Help'
 import {
@@ -13,6 +13,8 @@ import {
   Route,
 } from "react-router-dom";
 import Header from './Components/Header';
+import RouteMap from './Pages/RouteMap';
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -23,11 +25,13 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/services' element={<Services />} />
-          <Route path='/plan' element={<PlanJourney />} />
+          <Route path='/destination' element={<Destination />} />
           <Route path='/real' element={<RealInfo />} />
           <Route path='/help' element={<Help />} />
+          <Route path='/route' element={<RouteMap />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
 
   );
