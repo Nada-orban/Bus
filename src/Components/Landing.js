@@ -5,10 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../Pages/pages.css'
-import Dropdown from 'react-bootstrap/Dropdown';
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { increase, decrease } from '../Redux/CounterSlice'
 import { useSelector, useDispatch } from 'react-redux';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+
 
 
 function Landing() {
@@ -62,39 +64,50 @@ function Landing() {
                     <label>Return
                         <input placeholder=" Arriving" type="date" id="date-picker-example" className="form-control datepicker  w-100" /></label>
                 </Col>
-                <Col xs={12} md='3'>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="light" id="dropdown-basic" className='text-start mt-4 w-100'>
-                            <BsFillPeopleFill style={{ color: "green" }} /> <span className='ms-2'>{count.total}</span> Passenger
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                <Col xs={12} md='3' className='mt-4'>
 
-                            <Dropdown.Item ><h6 className='mb-3'>Choose Passenger Type</h6></Dropdown.Item>
-                            <Dropdown.Item id='1' className='d-flex justify-content-between'>
-                                <p>Adults<br />(17-61)</p>
-                                <div className="quantity  d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                    <div className='decrease' onClick={handledecrease}>-</div>
-                                    <div className='counter'>{count.value}</div>
-                                    <div className='increase' onClick={handleincrease} >+</div>
-                                </div></Dropdown.Item>
-                            <Dropdown.Item id='2' className='d-flex justify-content-between'>
-                                <p>Children<br />(2-16)</p>
-                                <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                    <div className='decrease' onClick={handledecrease}>-</div>
-                                    <div className='counter'>{count.value}</div>
-                                    <div className='increase' onClick={handleincrease}>+</div>
-                                </div></Dropdown.Item>
-                            <Dropdown.Item id='2' className='d-flex justify-content-between'>
-                                <p>Seniors<br />(62+)</p>
-                                <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                    <div className='decrease' onClick={handledecrease} >-</div>
-                                    <div className='counter'>{count.value}</div>
-                                    <div className='increase' onClick={handleincrease}>+</div>
-                                </div></Dropdown.Item>
-                            <Dropdown.Item><Button variant="success" className=' w-100'>DONE</Button></Dropdown.Item>
+                    <OverlayTrigger
+                        trigger="click"
+                        key='bottom'
+                        placement='bottom'
+                        overlay={
+                            <Popover id={`popover-positioned-${'bottom'}`} className='w-25 '>
+                                <Popover.Header as="h3">Choose Passenger Type</Popover.Header>
+                                <Popover.Body className='d-flex  flex-column mt-4'>
+                                    <div id='1' className='d-flex justify-content-between'>
+                                        <p>Adults<br />(17-61)</p>
+                                        <div className="quantity  d-flex align-items-center justify-content-center gap-3  w-50 ">
+                                            <div className='decrease ' role="button" onClick={handledecrease}>-</div>
+                                            <div className='counter' role="button">{count.value}</div>
+                                            <div className='increase' role="button" onClick={handleincrease} >+</div>
+                                        </div></div >
+                                    <div id='2' className='d-flex justify-content-between'>
+                                        <p>Children<br />(2-16)</p>
+                                        <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
+                                            <div className='decrease' role="button" onClick={handledecrease}>-</div>
+                                            <div className='counter' role="button">{count.value}</div>
+                                            <div className='increase' role="button" onClick={handleincrease}>+</div>
+                                        </div></div>
+                                    <div id='2' className='d-flex justify-content-between'>
+                                        <p>Seniors<br />(62+)</p>
+                                        <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
+                                            <div className='decrease' role="button" onClick={handledecrease} >-</div>
+                                            <div className='counter' role="button">{count.value}</div>
+                                            <div className='increase' role="button" onClick={handleincrease}>+</div>
+                                        </div></div>
+                                    <div><Button variant="success" className=' w-100'>DONE</Button></div>
 
-                        </Dropdown.Menu>
-                    </Dropdown></Col>
+                                </Popover.Body>
+                            </Popover>
+                        }
+                    >
+                        <Button variant="light" className='w-100 text-start'>
+                            <BsFillPeopleFill style={{ color: "green" }} /><span className='ms-2'>{count.total}</span> Passenger</Button>
+                    </OverlayTrigger>
+
+
+
+                </Col>
 
                 <Col xs={12} md={3}>
                     <Button variant="success " className=' mt-4 w-100'>Search</Button>
