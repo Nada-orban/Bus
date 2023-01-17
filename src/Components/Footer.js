@@ -68,7 +68,7 @@ function Footer() {
         </Container>
       </section>
 
-      <div className='text-center p-4 bg-success-subtle bg-opacity-25'>
+      <div className='text-center p-4 bg-light text-black'>
         © 2021 Copyright:
         <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
           MDBootstrap.com
