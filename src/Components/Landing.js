@@ -44,7 +44,25 @@ function Landing() {
     return (
         <Form>
             <Container fluid='md' className='form-info   shadow p-3 mb-5 bg-body-tertiary rounded bg-white position-absolute top-75 start-50 translate-middle '>
-                <Row className='mb-3'>
+                <div key={`default-${'radio'}`} className="mb-3 d-flex gap-4">
+                    <Form.Check
+                        type={'radio'}
+                        id={`default-${'radio'}`}
+                        label={`One Way`}
+                        {...register("one-way")}
+                    />
+
+                    <Form.Check
+                        type={'radio'}
+                        label={`Round Way`}
+                        id={`default-${'radio'}`}
+                        {...register("round-way")}
+                    />
+                </div>
+
+
+
+                {/* <Row className='mb-3'>
 
                     <Col xs={12} md={3}>
                         <label ><input type="radio" value={'on way'} {...register("one-way")} /> One Way</label>
@@ -53,7 +71,7 @@ function Landing() {
                         <label><input type="radio" value={'round way'} {...register("round-way")} /> Round Trip</label></Col>
 
 
-                </Row>
+                </Row> */}
                 <Row>
                     <Col xs={12} md={6}>
                         <Controller
