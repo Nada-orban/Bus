@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -11,10 +11,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 function Landing() {
+    const [close, setClose] = useState("false");
+    const navigate = useNavigate();
+    const navigateTo = () => navigate('/search');
     const count = useSelector(state => state.count)
     const dispatch = useDispatch()
     const { register, getValues, control } = useForm();
@@ -29,11 +34,11 @@ function Landing() {
     // ];
 
 
-    const handleincrease = () => {
-        dispatch(increase)
+    const handleincrease = (gender) => {
+        dispatch(increase(gender))
     }
-    const handledecrease = () => {
-        dispatch(decrease)
+    const handledecrease = (gender) => {
+        dispatch(decrease(gender))
     }
 
     // const handleselect = (option) => {
@@ -43,7 +48,7 @@ function Landing() {
     // }
     return (
         <Form>
-            <Container fluid='md' className='form-info   shadow p-3 mb-5 bg-body-tertiary rounded bg-white position-absolute top-75 start-50 translate-middle '>
+            <Container fluid='md' className='form-info   shadow p-3 mb-5 bg-body-tertiary rounded bg-white '>
                 <div key={`default-${'radio'}`} className="mb-3 d-flex gap-4">
                     <Form.Check
                         type={'radio'}
@@ -112,44 +117,44 @@ function Landing() {
                     </Col>
                 </Row>
                 <Row className='mt-3  '>
-                    <Col s={6} md='3'  >
+                    <Col s={6} md='2'  >
                         <label>Depart
                             <input placeholder=" Departing" type="date" id="date-picker-example" className="form-control datepicker mb-2 w-100 " {...register("data-depart")} /></label>
                     </Col>
-                    <Col s={6} md='3'
+                    <Col s={6} md='2'
                     >
                         <label>Return
                             <input placeholder=" Arriving" type="date" id="date-picker-example" className="form-control datepicker  w-100" {...register("data-return")} /></label>
                     </Col>
-                    <Col xs={12} md='3' className='mt-4'>
+                    <Col xs={12} md='4' className='mt-4 ms-md-4 '>
                         <OverlayTrigger
                             trigger="click"
                             key='bottom'
                             placement='bottom'
                             overlay={
-                                <Popover id={`popover-positioned-${'bottom'}`} className='w-25 '>
+                                <Popover id={`popover-positioned-${'bottom'}`} className='w-50 '>
                                     <Popover.Header as="h3">Choose Passenger Type</Popover.Header>
                                     <Popover.Body className='d-flex  flex-column mt-4'>
-                                        <div id='1' className='d-flex justify-content-between'>
+                                        <div id='adult' className='d-flex justify-content-between'>
                                             <p>Adults<br />(17-61)</p>
                                             <div className="quantity  d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                                <div className='decrease ' role="button" onClick={handledecrease}>-</div>
-                                                <div className='counter' role="button">{count.value}</div>
-                                                <div className='increase' role="button" onClick={handleincrease} >+</div>
+                                                <div className='decrease ' role="button" onClick={() => handledecrease('adult')}>-</div>
+                                                <div className='counter' role="button">{count.adult}</div>
+                                                <div className='increase' role="button" onClick={() => handleincrease('adult')} >+</div>
                                             </div></div >
-                                        <div id='2' className='d-flex justify-content-between'>
+                                        <div id='children' className='d-flex justify-content-between'>
                                             <p>Children<br />(2-16)</p>
                                             <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                                <div className='decrease' role="button" onClick={handledecrease}>-</div>
-                                                <div className='counter' role="button">{count.value}</div>
-                                                <div className='increase' role="button" onClick={handleincrease}>+</div>
+                                                <div className='decrease' role="button" onClick={() => handledecrease('children')}>-</div>
+                                                <div className='counter' role="button">{count.children}</div>
+                                                <div className='increase' role="button" onClick={() => handleincrease('children')}>+</div>
                                             </div></div>
-                                        <div id='2' className='d-flex justify-content-between'>
+                                        <div id='seniors' className='d-flex justify-content-between'>
                                             <p>Seniors<br />(62+)</p>
                                             <div className="quantity d-flex align-items-center justify-content-center gap-3  w-50 ">
-                                                <div className='decrease' role="button" onClick={handledecrease} >-</div>
-                                                <div className='counter' role="button">{count.value}</div>
-                                                <div className='increase' role="button" onClick={handleincrease}>+</div>
+                                                <div className='decrease' role="button" onClick={() => handledecrease('seniors')} >-</div>
+                                                <div className='counter' role="button">{count.seniors}</div>
+                                                <div className='increase' role="button" onClick={() => handleincrease('seniors')}>+</div>
                                             </div></div>
                                         <div><Button variant="success" className=' w-100'>DONE</Button></div>
 
@@ -157,8 +162,8 @@ function Landing() {
                                 </Popover>
                             }
                         >
-                            <Button variant="light" className='w-100 text-start' {...register("passenger")}>
-                                <BsFillPeopleFill style={{ color: "green" }} /><span className='ms-2'>{count.total}</span> Passenger</Button>
+                            <Button variant="light" className='w-100 text-start' >
+                                <BsFillPeopleFill style={{ color: "green" }} /><span className='ms-2' value='' {...register("passenger")}>{count.total}</span> Passenger</Button>
                         </OverlayTrigger>
 
 
@@ -166,10 +171,10 @@ function Landing() {
                     </Col>
 
                     <Col xs={12} md={3}>
-                        <Button variant="success " className=' mt-4 w-100' type='button' onClick={() => {
-                            const Values = getValues();
-                            console.log(Values)
-                        }}>Search</Button>
+                        <Button variant="success " className=' mt-4 w-100' type='button'
+                            // 
+                            onClick={navigateTo}
+                        >Search</Button>
 
 
                     </Col>

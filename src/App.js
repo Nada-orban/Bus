@@ -15,6 +15,7 @@ import {
 import Header from './Components/Header';
 import RouteMap from './Pages/RouteMap';
 import Footer from './Components/Footer';
+import Search from './Components/Search'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/real' element={<RealInfo />} />
           <Route path='/help' element={<Help />} />
           <Route path='/route' element={<RouteMap />} />
+          <Route path='/search' element={<Search />} />
         </Routes>
       </Router>
       <Footer />

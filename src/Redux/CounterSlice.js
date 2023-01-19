@@ -2,8 +2,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    value: 0,
+    adult: 0,
+    children: 0,
+    seniors: 0,
     total: 0
+
 
 
 }
@@ -13,17 +16,35 @@ const Countslice = createSlice({
     initialState,
     reducers: {
         increase: (state, action) => {
-            if (state.id === action.payload.id) {
-                state.value += 1;
+            if ('adult' === action.payload) {
+                state.adult += 1;
+                state.total += 1;
+
+            } else if ('children' === action.payload) {
+                state.children += 1;
+                state.total += 1;
+
+            } else {
+                state.seniors += 1;
+                state.total += 1;
 
             }
-            state.total += 1;
+
         },
         decrease: (state, action) => {
-            if (state.value > 0 && state.id === action.payload.id) {
-                state.value -= 1;
+            if ('adult' === action.payload && state.adult > 0) {
+                state.adult -= 1;
+                state.total -= 1;
+
+            } else if ('children' === action.payload && state.children > 0 > 0) {
+                state.children -= 1;
+                state.total -= 1;
+
+            } else {
+                state.seniors -= 1;
+                state.total -= 1;
+
             }
-            state.total += 1;
         }
     }
 })
