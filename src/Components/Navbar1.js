@@ -10,6 +10,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
 
+
 function Navbar1() {
     const [show, setShow] = useState(false);
     const closemenu = () => { setShow(!show) }
@@ -17,8 +18,9 @@ function Navbar1() {
     return (
         <>
             {['md'].map((expand) => (
-                <Navbar bg="success" key={expand} expand={expand} className='bg-opacity-50 navbar-info ' variant="dark" >
-                    <Container>
+                <Navbar bg="success" key={expand} expand={expand} className='navbar-info ' variant="dark" >
+                    <Container fluid>
+                        <Navbar.Brand href="/" className="d-none d-sm-block d-md-none">SookaBus</Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className='text-white ' ><FaBars /></Navbar.Toggle>
                         <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="start" className='w-50'>

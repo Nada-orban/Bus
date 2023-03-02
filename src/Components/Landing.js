@@ -12,27 +12,19 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import { addtosearch } from '../Redux/traveldataSlice'
 
 
 
 
 function Landing() {
-    const [close, setClose] = useState("false");
+
     const navigate = useNavigate();
     const navigateTo = () => navigate('/search');
     const count = useSelector(state => state.count)
+    const traveldata = useSelector(state => state.traveldata)
     const dispatch = useDispatch()
-    const { register, getValues, control } = useForm();
-    // const { field } = useController({ name: 'country', control })
-
-
-
-    // const fromoptions = [
-    //     { value: 'New York,NY', label: 'New York,NY' },
-    //     { value: 'Washington,D.C.', label: 'Washington,D.C.' },
-    //     { value: 'Bangalore', label: 'Bangalore' },
-    // ];
-
+    const { register, handleSubmit, control } = useForm();
 
     const handleincrease = (gender) => {
         dispatch(increase(gender))
@@ -40,6 +32,18 @@ function Landing() {
     const handledecrease = (gender) => {
         dispatch(decrease(gender))
     }
+    const handletraveldata = (data) => {
+        dispatch(addtosearch(data))
+    }
+
+    //     const defaultValues = {
+    //         'one-way': { traveldata.one-way }
+    // }
+
+
+
+
+
 
     // const handleselect = (option) => {
     //     field.onChange(option.value)
@@ -47,8 +51,11 @@ function Landing() {
 
     // }
     return (
-        <Form>
-            <Container fluid='md' className='form-info   shadow p-3 mb-5 bg-body-tertiary rounded bg-white '>
+        <Form onSubmit={handleSubmit((data) => {
+            handletraveldata(data)
+            console.log(data)
+        })}>
+            <Container fluid='md' className='form-info   shadow p-3 mb-5 bg-body-tertiary rounded bg-white position-absolute top-75 start-50 translate-middle  '>
                 <div key={`default-${'radio'}`} className="mb-3 d-flex gap-4">
                     <Form.Check
                         type={'radio'}
@@ -67,16 +74,7 @@ function Landing() {
 
 
 
-                {/* <Row className='mb-3'>
 
-                    <Col xs={12} md={3}>
-                        <label ><input type="radio" value={'on way'} {...register("one-way")} /> One Way</label>
-                    </Col>
-                    <Col xs={12} md={3}>
-                        <label><input type="radio" value={'round way'} {...register("round-way")} /> Round Trip</label></Col>
-
-
-                </Row> */}
                 <Row>
                     <Col xs={12} md={6}>
                         <Controller
@@ -97,6 +95,7 @@ function Landing() {
                         {/* <Form.Select aria-label="Default select example" value={fromoptions.find(({ value }) => value === field.value)}
                             options={fromoptions} onChange={handleselect} /> */}
                     </Col>
+
                     <Col xs={12} md={6}>
                         <Controller
                             render={
@@ -119,12 +118,11 @@ function Landing() {
                 <Row className='mt-3  '>
                     <Col s={6} md='2'  >
                         <label>Depart
-                            <input placeholder=" Departing" type="date" id="date-picker-example" className="form-control datepicker mb-2 w-100 " {...register("data-depart")} /></label>
+                            <input placeholder=" Departing" type="date" id="date-picker-example" className="form-control datepicker mb-2 w-100 " {...register("data-depart", { required: true })} /></label>
                     </Col>
-                    <Col s={6} md='2'
-                    >
+                    <Col s={6} md='2' className='ms-md-4' >
                         <label>Return
-                            <input placeholder=" Arriving" type="date" id="date-picker-example" className="form-control datepicker  w-100" {...register("data-return")} /></label>
+                            <input placeholder=" Arriving" type="date" id="date-picker-example" className="form-control datepicker  w-100" {...register("data-return", { required: true })} /></label>
                     </Col>
                     <Col xs={12} md='4' className='mt-4 ms-md-4 '>
                         <OverlayTrigger
@@ -156,14 +154,16 @@ function Landing() {
                                                 <div className='counter' role="button">{count.seniors}</div>
                                                 <div className='increase' role="button" onClick={() => handleincrease('seniors')}>+</div>
                                             </div></div>
-                                        <div><Button variant="success" className=' w-100'>DONE</Button></div>
+                                        <div>
+                                            {/* <Button variant="success" className=' w-100'>DONE</Button> */}
+                                        </div>
 
                                     </Popover.Body>
                                 </Popover>
                             }
                         >
                             <Button variant="light" className='w-100 text-start' >
-                                <BsFillPeopleFill style={{ color: "green" }} /><span className='ms-2' value='' {...register("passenger")}>{count.total}</span> Passenger</Button>
+                                <BsFillPeopleFill style={{ color: "green" }} /><span className='ms-2' value='' {...register("passenger", { required: true })}>{count.total}</span> Passenger</Button>
                         </OverlayTrigger>
 
 
@@ -171,8 +171,8 @@ function Landing() {
                     </Col>
 
                     <Col xs={12} md={3}>
-                        <Button variant="success " className=' mt-4 w-100' type='button'
-                            // 
+                        <Button variant="success " className=' mt-4 w-100' type="button"
+
                             onClick={navigateTo}
                         >Search</Button>
 
@@ -180,6 +180,28 @@ function Landing() {
                     </Col>
 
                 </Row>
+                {/* // const {field} = useController({name: 'country', control })
+
+
+
+    // const fromoptions = [
+    //     {value: 'New York,NY', label: 'New York,NY' },
+    //     {value: 'Washington,D.C.', label: 'Washington,D.C.' },
+    //     {value: 'Bangalore', label: 'Bangalore' },
+                // ]; */}
+
+                {/* <Row className='mb-3'>
+
+                    <Col xs={12} md={3}>
+                        <label ><input type="radio" value={'on way'} {...register("one-way")} /> One Way</label>
+                    </Col>
+                    <Col xs={12} md={3}>
+                        <label><input type="radio" value={'round way'} {...register("round-way")} /> Round Trip</label></Col>
+
+
+                </Row> */}
+
+
                 {/* <Row>
                 <Col xs={6} md={6}>
                     <Form.Select aria-label="Default select example">

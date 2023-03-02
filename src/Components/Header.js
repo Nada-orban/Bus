@@ -16,7 +16,7 @@ function Header() {
                     <div className='close-icon text-black' role="button" onClick={() => setClose(!close)}><AiOutlineClose /></div>
                 </Container>
             </Navbar>}
-            <Navbar bg="success" expand="lg " variant="dark">
+            <Navbar bg="success" variant="dark" className='d-md-block d-sm-none bg-opacity-50 '>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/' className='navbar-brand  mx-auto'>SookaBus</Navbar.Brand>
                 </Container>

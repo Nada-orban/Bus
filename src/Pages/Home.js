@@ -12,7 +12,7 @@ function Home() {
     <div className='home ' >
       <div className='carsoul position-relative '>
         <div className="landing" ></div>
-        <Landing className='position-absolute top-75 start-50 translate-middle ' />
+        <Landing />
       </div>
 
       <Features />
