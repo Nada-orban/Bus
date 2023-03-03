@@ -28,23 +28,27 @@ function Navbar1() {
 
                             </Offcanvas.Header>
                             <Offcanvas.Body  >
-                                <Nav className="  justify-content-center text-black flex-grow-1 fw-bold  " >
-                                    <NavDropdown title={<span className=" my-auto">Plan Your Journey</span>} id="basic-nav-dropdown" as={Link} to='/plan' className=" nav-link ">
+                                <Nav className="  justify-content-center text-black flex-grow-1 w-100 text-center  " >
+                                    {/* <NavDropdown title={<span className=" my-auto">Plan Your Journey</span>} id="basic-nav-dropdown" as={Link} to='/plan' className=" nav-link ">
                                         <NavDropdown.Item ><Link as={Link} to='/route' className=" text-secondary text-decoration-none ">Route Map</Link> </NavDropdown.Item>
                                         <NavDropdown.Item>
                                             <Link as={Link} to='/destination' className=" text-secondary text-decoration-none " >All Bus destinations</Link>
                                         </NavDropdown.Item>
                                         <NavDropdown.Item >Vacation ideas</NavDropdown.Item>
-                                    </NavDropdown>
-                                    <NavDropdown title={<span className=" my-auto">Service</span>} id="basic-nav-dropdown" as={Link} to='/services' className="nav-link ">
+                                    </NavDropdown> */}
+                                    {/* <NavDropdown title={<span className=" my-auto">Service</span>} id="basic-nav-dropdown" as={Link} to='/services' className="nav-link ">
                                         <NavDropdown.Item >All Services</NavDropdown.Item>
                                         <NavDropdown.Item>
                                             FAQ
                                         </NavDropdown.Item>
                                         <NavDropdown.Item >Manage My Booking</NavDropdown.Item>
-                                    </NavDropdown>
-                                    <Nav.Link as={Link} to='/real' className="nav-link  mt-2 " >Real-Time Info</Nav.Link>
-                                    <Nav.Link as={Link} to='/help' className="nav-link  mt-2" >Help</Nav.Link>
+                                    </NavDropdown> */}
+                                    <Nav.Link as={Link} to='/route' className="nav-link  mt-0 mt-md-2" >Route Map</Nav.Link>
+                                    <hr />
+                                    <Nav.Link as={Link} to='/real' className="nav-link  mt-0 mt-md-2" >Real-Time Info</Nav.Link>
+                                    <hr />
+                                    <Nav.Link as={Link} to='/help' className="nav-link  mt-0 mt-md-2" >Help</Nav.Link>
+                                    <hr />
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>

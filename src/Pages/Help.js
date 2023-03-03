@@ -10,6 +10,7 @@ import { VscFeedback } from 'react-icons/vsc'
 import { MdBusAlert } from 'react-icons/md'
 import { FaCreditCard, FaWheelchair } from 'react-icons/fa'
 import { BsBagFill } from 'react-icons/bs'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 
 
@@ -17,6 +18,12 @@ import { BsBagFill } from 'react-icons/bs'
 function Help() {
   return (
     <Container className='d-flex flex-column justify-content-center text-center'>
+      <Breadcrumb>
+        <Breadcrumb.Item href="#" active>Home</Breadcrumb.Item>
+        <Breadcrumb.Item >
+          Help
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <div className='my-3'>
         <p className='fs-1'>What can we help you with?</p>
         <input type="search" placeholder="Search.." className=' w-50 ' />
