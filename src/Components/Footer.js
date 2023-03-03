@@ -10,7 +10,7 @@ import { AiOutlineInstagram, AiOutlineTwitter, AiOutlineYoutube } from 'react-ic
 
 function Footer() {
   return (
-    <div className='text-center text-lg-start text-light bg-success bg-opacity-75'>
+    <div className='text-center text-lg-start text-light bg-success bg-opacity-75 '>
 
       <section className='pt-4'>
         <Container className='text-center text-md-start mt-5'>

@@ -17,7 +17,7 @@ import { BsBagFill } from 'react-icons/bs'
 function Help() {
   return (
     <Container className='d-flex flex-column justify-content-center text-center'>
-      <div>
+      <div className='my-3'>
         <p className='fs-1'>What can we help you with?</p>
         <input type="search" placeholder="Search.." className=' w-50 ' />
       </div>

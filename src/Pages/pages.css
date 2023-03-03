@@ -46,3 +46,18 @@
     font-weight: bold;
 
 }
+/********************realinfo****************/
+.backgroundImage{
+    background-image: url('../img/hero-gh-mobile.863c6e68.png');
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+}
+.realinfo{
+    height: 70vh;
+}
+.container-box{
+    top:400px;
+}
