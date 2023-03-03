@@ -14,7 +14,6 @@ function Home() {
         <div className="landing" ></div>
         <Landing />
       </div>
-
       <Features />
       <hr />
       <Container>

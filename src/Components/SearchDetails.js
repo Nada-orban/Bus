@@ -82,10 +82,21 @@ function SearchDetails() {
                                     className="my-3 "
                                 >
                                     <Tab eventKey="home" title="Depart">
+                                        <div className='d-flex justify-content-between'>
+                                            <label for="customRange2" class="form-label">Thu,11:00Am</label>
+                                            <label for="customRange2" class="form-label">Thu,12:00Pm</label>
+                                        </div>
+                                        <input type="range" class="form-range" min="0" max="5" id="customRange2" />
+
 
 
                                     </Tab>
                                     <Tab eventKey="Arrival" title="Arrival">
+                                        <div className='d-flex justify-content-between'>
+                                            <label for="customRange2" class="form-label">Thu,11:00Am</label>
+                                            <label for="customRange2" class="form-label">Thu,12:00Pm</label>
+                                        </div>
+                                        <input type="range" class="form-range" min="0" max="5" id="customRange2" />
 
                                     </Tab>
 
